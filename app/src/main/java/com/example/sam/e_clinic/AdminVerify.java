@@ -123,7 +123,7 @@ ListView listView;
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
                 HashMap<String, String> paramms = new HashMap<>();
-                paramms.put("verified", "false");
+                paramms.put("type", "false");
                 String s = rh.sendPostRequest(URLs.main + "fetch_caregiver.php", paramms);
                 return s;
 

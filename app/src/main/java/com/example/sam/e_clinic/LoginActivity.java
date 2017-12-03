@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.example.sam.e_clinic.URLs.main;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -130,9 +131,8 @@ public class LoginActivity extends AppCompatActivity {
                 final ProgressDialog pdialog= new ProgressDialog(LoginActivity.this);
                 pdialog.setMessage("Logging you in");
                 pdialog.show();
-
                 RequestQueue queue = Volley.newRequestQueue( LoginActivity.this);
-                String url = "http://192.168.43.188/eclinic/patientlogin.php ";
+                String url = main+"patientlogin.php";
                 StringRequest PostRequest = new StringRequest(Request.Method.POST, url,
                         new Response.Listener<String>() {
                             @Override
@@ -183,7 +183,7 @@ public class LoginActivity extends AppCompatActivity {
                 pdialog.show();
 
                 RequestQueue queue = Volley.newRequestQueue( LoginActivity.this);
-                String url = "http://192.168.43.188/eclinic/caregiverlogin.php";
+                String url = main+"caregiverlogin.php";
                 StringRequest PostRequest = new StringRequest(Request.Method.POST, url,
                         new Response.Listener<String>() {
                             @Override
@@ -236,7 +236,7 @@ public class LoginActivity extends AppCompatActivity {
                 pdialog.show();
 
                 RequestQueue queue = Volley.newRequestQueue( LoginActivity.this);
-                String url = "http://192.168.43.188/eclinic/adminlogin.php";
+                String url = main+"adminlogin.php";
                 StringRequest PostRequest = new StringRequest(Request.Method.POST, url,
                         new Response.Listener<String>() {
                             @Override

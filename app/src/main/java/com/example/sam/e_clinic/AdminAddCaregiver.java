@@ -110,6 +110,10 @@ Button button5;
 
                     new AlertDialog.Builder(AdminAddCaregiver.this).setMessage("Registration success.").show();
 
+
+
+
+
                 }
                 else
                 {

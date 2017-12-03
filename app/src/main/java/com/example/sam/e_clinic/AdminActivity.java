@@ -10,6 +10,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -35,10 +36,11 @@ public class AdminActivity extends AppCompatActivity
         listView = (ListView) findViewById(R.id.listview1);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AdminActivity.this, AdminAddCaregiver.class));
+                startActivity(new Intent(AdminActivity.this, AdminVerify.class));
             }
         });
         fetch_caregivers();
@@ -64,10 +66,9 @@ public class AdminActivity extends AppCompatActivity
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
                 HashMap<String, String> paramms = new HashMap<>();
-                paramms.put("name", "");
+                paramms.put("type", "true");
                 String s = rh.sendPostRequest(URLs.main + "fetch_caregiver.php", paramms);
                 return s;
-
             }
 
 
@@ -75,7 +76,10 @@ public class AdminActivity extends AppCompatActivity
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 pDialog.dismiss();
+                Log.d("result", s);
                 showthem(s);
+
+
             }
 
 
