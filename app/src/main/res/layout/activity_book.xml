@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:ems="10"
         android:gravity="center"
-        android:hint="username"
+        android:hint="place name"
         android:inputType="textPersonName" />
 
     <EditText
@@ -61,6 +61,7 @@
         android:layout_below="@+id/editText6"
         android:ems="10"
         android:gravity="center"
+        android:focusable="false"
         android:hint="location"
         android:inputType="textPersonName" />
 

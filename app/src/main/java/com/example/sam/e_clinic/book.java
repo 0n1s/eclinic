@@ -19,12 +19,14 @@ import java.util.HashMap;
 import static com.example.sam.e_clinic.LoginActivity.user_id;
 import static com.example.sam.e_clinic.PatientCaregiverList.usernameusername_caregiver;
 
-public class book extends AppCompatActivity {
+public class book extends AppCompatActivity
+{
     EditText e4,e5,e6,e7;
     Button button3;
     Button button12;
     TextView rate;
-   public static String care_giver_name;
+    public static String care_giver_name;
+    public static String cordinates;
     Button button4;
 private void mydate(){
     Calendar calendar = new GregorianCalendar();
@@ -33,10 +35,6 @@ private void mydate(){
     int month      = calendar.get(Calendar.MONTH);
     int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH); // Jan = 0, not 1
     e6.setText(year+"-"+(month+1)+"-"+dayOfMonth);
-   // int dayOfWeek  = calendar.get(Calendar.DAY_OF_WEEK);
-    //int weekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
-    //int weekOfMonth= calendar.get(Calendar.WEEK_OF_MONTH);
-
 
 }
     @Override
@@ -45,30 +43,40 @@ private void mydate(){
         setContentView(R.layout.activity_book);
         mydate();
 
-//user_id
-
 
         Intent intent = getIntent();
         care_giver_name = intent.getStringExtra("care_giver_name");
         e4 = (EditText) findViewById(R.id.editText4);
+e4.setVisibility(View.GONE);
         e5 = (EditText) findViewById(R.id.editText5);
+        e5.setVisibility(View.GONE);
         e6 = (EditText) findViewById(R.id.editText6);
         e7 = (EditText) findViewById(R.id.editText7);
+        e7.setText(cordinates);
+        e7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+
+                startActivity(new Intent(book.this, PlaceViewer.class));
+
+            }
+        });
         button3 = (Button) findViewById(R.id.button3);
         button4 = (Button) findViewById(R.id.button8);
         button12 = (Button) findViewById(R.id.button12);
         rate = (TextView) findViewById(R.id.textView42);
 
-        button3.setOnClickListener(new View.OnClickListener() {
+
+        button3.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 String username, patient, date_of_request, location;
-
-                username = e4.getText().toString();
-                patient = e5.getText().toString();
+                username = user_id;//e4.getText().toString();
+                patient = user_id;//e5.getText().toString();
                 date_of_request = e6.getText().toString();
                 location = e7.getText().toString();
-                //book(username, patient, date_of_request, location);
 
                 if (username.equals("") || patient.equals("") || date_of_request.equals("") || location.equals("")) {
 

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -36,23 +37,6 @@ public  static  String payday, paynight, number;
         listView=(ListView)findViewById(R.id.listview);
         fetch_caregivers("");
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//
-//
-//               // startActivity(new Intent(PatientCaregiverList.this, book.class));
-//
-//
-//
-////                employees.put("username", username);
-////                employees.put("county", county);
-////                employees.put("certid", certid);
-////                employees.put("phone_number", phone_number);
-//            }
-//        });
-
 
     }
 
@@ -77,7 +61,7 @@ public  static  String payday, paynight, number;
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
                 HashMap<String, String> paramms = new HashMap<>();
-                paramms.put("", name);
+                paramms.put("type", "true");
                 String s = rh.sendPostRequest(URLs.main + "fetch_caregiver.php", paramms);
                 return s;
 
@@ -88,7 +72,10 @@ public  static  String payday, paynight, number;
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 pDialog.dismiss();
+
+                Log.d("patientcaregiver", s);
                 showthem(s);
+
             }
 
 
@@ -159,16 +146,12 @@ public  static  String payday, paynight, number;
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-
-//                new String[]{"username", "county", "payday", "paynight", "phone_number"}, new int[]{
-// R.id.textView5,R.id.textView7,R.id.textView19,R.id.textView9,R.id.textView8});
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+            {
 
                 TextView tusername = (TextView) view.findViewById(R.id.textView5);
                 String username = tusername.getText().toString();
                 usernameusername_caregiver=username;
-               // Toast.makeText(PatientCaregiverList.this, usernameusername_caregiver, Toast.LENGTH_SHORT).show();
                 TextView tcounty = (TextView) view.findViewById(R.id.textView7);
                 String county = tcounty.getText().toString();
                 TextView tpayday = (TextView) view.findViewById(R.id.textView19);
@@ -177,10 +160,9 @@ public  static  String payday, paynight, number;
                 paynight = tpaynight.getText().toString();
                 TextView tnumber = (TextView) view.findViewById(R.id.textView8);
                 number = tnumber.getText().toString();
-
                 startActivity(new Intent(PatientCaregiverList.this, book.class)
                 .putExtra("care_giver_name",  username));
-                // Toast.makeText(PatientCaregiverList.this, String.valueOf(payday), Toast.LENGTH_SHORT).show();
+
             }
 
 

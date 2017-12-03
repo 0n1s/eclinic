@@ -66,7 +66,7 @@ public class AdminActivity extends AppCompatActivity
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
                 HashMap<String, String> paramms = new HashMap<>();
-                paramms.put("type", "true");
+                paramms.put("type", "all");
                 String s = rh.sendPostRequest(URLs.main + "fetch_caregiver.php", paramms);
                 return s;
             }

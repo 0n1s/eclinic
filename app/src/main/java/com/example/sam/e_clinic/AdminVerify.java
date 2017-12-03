@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
@@ -63,6 +64,7 @@ ListView listView;
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
+                Toast.makeText(AdminVerify.this, caregiverusername, Toast.LENGTH_SHORT).show();
                 pDialog = new ProgressDialog(AdminVerify.this);
                 pDialog.setMessage("verifying caregiver...");
                 pDialog.setCancelable(false);
@@ -73,8 +75,9 @@ ListView listView;
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
                 HashMap<String, String> paramms = new HashMap<>();
+                paramms.put("type", "verify");
                 paramms.put("caregiverusername", caregiverusername);
-                String s = rh.sendPostRequest(URLs.main + "verify1.php", paramms);
+                String s = rh.sendPostRequest(URLs.main + "fetch_caregiver.php", paramms);
                 return s;
 
             }
